@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>christmas_countdown</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;        
+        }
+        .backstage{
+            width: 100%;
+            height: 740px;
+            background-image: url("christmas_bg.jpeg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+        }
+        #content{
+            border-radius: 20px;
+            width: 1000px;
+            height: 120px;
+            margin: auto;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="backstage">
+        <div id="content"></div>
+    </div>
+    <script>
+        var box = document.getElementById('content');
+        var newDate = new Date('2021-12-25').getTime();
+        fn();
+        setInterval('fn()', 1000);
+        function fn() {
+            var nowDate = new Date().getTime();
+            var time = Math.floor((newDate - nowDate) / 1000);
+            var day = Math.floor(time / 24 / 60 / 60);
+            var hour = Math.floor(time / 60 / 60 % 24);
+            hour = hour < 10 ? '0' + hour : hour;
+            var minute = Math.floor(time / 60 % 60);
+            minute = minute < 10 ? '0' + minute : minute;
+            var second = Math.floor(time % 60);
+            second = second < 10 ? '0' + second : second;
+            console.log(day, hour, minute, second);
+            box.innerHTML = 'There are only ' + day + ' days ' + hour + ' hours ' + minute + ' minutes ' + second + ' seconds until Christmas! ';
+        }
+    </script>
+</body>
+
+</html>
